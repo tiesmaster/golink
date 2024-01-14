@@ -50,6 +50,7 @@ var (
 	hostname          = flag.String("hostname", defaultHostname, "service name")
 	resolveFromBackup = flag.String("resolve-from-backup", "", "resolve a link from snapshot file and exit")
 	allowUnknownUsers = flag.Bool("allow-unknown-users", false, "allow unknown users to save links")
+	https             = flag.Bool("https", true, "listen on HTTPS")
 )
 
 var stats struct {
@@ -189,7 +190,7 @@ out:
 	if err != nil {
 		return err
 	}
-	enableTLS := status.Self.HasCap(tailcfg.CapabilityHTTPS) && len(srv.CertDomains()) > 0
+	enableTLS := *https && status.Self.HasCap(tailcfg.CapabilityHTTPS) && len(srv.CertDomains()) > 0
 	fqdn := strings.TrimSuffix(status.Self.DNSName, ".")
 
 	httpHandler := serveHandler()
