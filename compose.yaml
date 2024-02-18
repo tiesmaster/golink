@@ -1,0 +1,11 @@
+version: "3"
+services:
+  golink:
+    image: ghcr.io/tailscale/golink:main
+    volumes:
+      - ./data:/home/nonroot
+    environment:
+      TS_AUTHKEY: fdsfsds
+
+volumes:
+  golink-volume: null

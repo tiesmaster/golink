@@ -74,6 +74,7 @@ var db *SQLiteDB
 var localClient *tailscale.LocalClient
 
 func Run() error {
+	log.Printf("Start hacking!!")
 	flag.Parse()
 
 	hostinfo.SetApp("golink")
